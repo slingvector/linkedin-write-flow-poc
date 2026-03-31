@@ -17,7 +17,8 @@ def test_write_flow_init(mocker):
 
     wf = WriteFlow()
     assert wf._oauth_token == "token123"
-    assert wf._author_urn == "urn:li:person:123"
+    assert wf._author_urn is None
+    assert wf.author_urn == "urn:li:person:123"
 
 
 def test_write_flow_publish_post(mocker):
@@ -38,5 +39,5 @@ def test_write_flow_publish_post(mocker):
     result = wf.publish_post("Hi")
     assert result["success"] is True
     mock_create.assert_called_once_with(
-        author_urn="urn:li:person:123", text="Hi", visibility="PUBLIC"
+        author_urn="urn:li:person:123", text="Hi", visibility="PUBLIC", correlation_id=mocker.ANY
     )
