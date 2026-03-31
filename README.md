@@ -7,6 +7,13 @@ A highly resilient, SOLID-compliant Python orchestration package for safely publ
 - **SOLID Architecture**: Strict decoupling of logical concerns safely wrapped internally into an isolated HTTP Repository (`LinkedInClient`) and Business Rules engine (`PostService`).
 - **Resilient & Fault Tolerant**: Built-in exponential backoff retries via `tenacity` natively catch, handle, and retry network timeouts safely without shutting down scripts.
 - **Advanced Media Handling**: Natively interfaces with complex multi-domain 3-step Asset uploading protocols (AWS/Azure) so developers can seamlessly attach images and videos over the `ugcPosts` graph.
+- **Production Observability**: Built-in structured JSON logging with injected distributed tracing IDs (`correlation_id`) securely tracking execution bounds.
+- **Graceful Failure State**: Implements rigorous fail-fast input validation bounds and safe fallback handling preventing any mid-flight fatal crashes.
+
+---
+
+## 📖 User Guide
+For complete documentation on Authentication, Exception Handling, Logging, and specific feature capabilities—please view the [docs/USER_GUIDE.md](docs/USER_GUIDE.md).
 
 ---
 
@@ -63,6 +70,18 @@ img_path = Path("path/to/my/image.jpg")
 result = wf.publish_image_post(
     text="Here is a visual snippet of today's work! 📸",
     image_path=img_path
+)
+
+print(result["success"]) # True
+
+# ----------------------------------------------
+# 3. Publishing a Video Post
+# ----------------------------------------------
+video_path = Path("path/to/demo.mp4")
+
+result = wf.publish_video_post(
+    text="Look at our brand new video walkthrough! 🎥",
+    video_path=video_path
 )
 
 print(result["success"]) # True
