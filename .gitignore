@@ -1,0 +1,17 @@
+# Environments
+venv/
+.env
+
+# Cache & Compiled
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# User Data
+.oauth_token_cache.json
+
+# Local Media / Testing
+media/
+test_image_upload.py
+test_image.jpg
